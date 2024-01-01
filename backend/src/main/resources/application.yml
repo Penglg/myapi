@@ -4,7 +4,7 @@ spring:
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yuapi
+    url: jdbc:mysql://localhost:3306/myapi
     username: root
     password: 123456
   mvc:
@@ -14,12 +14,14 @@ spring:
   session:
     timeout: 86400
 #    store-type: redis
-    store-type: none
+    store-type: redis
   # redis 配置
   redis:
     port: 6379
     host: localhost
     database: 0
+#    password: 123456
+
 server:
   port: 7529
   servlet:
