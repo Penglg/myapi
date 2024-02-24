@@ -2,11 +2,10 @@ package com.lgp.myapi.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.lgp.myapi.model.enums.InterfaceInfoStatusEnum;
+import com.lgp.myapiclientsdk.client.ApiClient;
 import com.lgp.myapi.annotation.AuthCheck;
-import com.lgp.myapi.common.BaseResponse;
-import com.lgp.myapi.common.DeleteRequest;
-import com.lgp.myapi.common.ErrorCode;
-import com.lgp.myapi.common.ResultUtils;
+import com.lgp.myapi.common.*;
 import com.lgp.myapi.constant.CommonConstant;
 import com.lgp.myapi.exception.BusinessException;
 import com.lgp.myapi.model.dto.interfaceinfo.InterfaceInfoAddRequest;
@@ -41,7 +40,8 @@ public class IntefaceInfoController {
     @Resource
     private UserService userService;
 
-    // region 增删改查
+    @Resource
+    private ApiClient apiClient;
 
     /**
      * 创建
@@ -51,7 +51,8 @@ public class IntefaceInfoController {
      * @return
      */
     @PostMapping("/add")
-    public BaseResponse<Long> addInterfaceInfo(@RequestBody InterfaceInfoAddRequest interfaceInfoAddRequest, HttpServletRequest request) {
+    public BaseResponse<Long> addInterfaceInfo(@RequestBody InterfaceInfoAddRequest interfaceInfoAddRequest,
+                                               HttpServletRequest request) {
         if (interfaceInfoAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -77,7 +78,8 @@ public class IntefaceInfoController {
      * @return
      */
     @PostMapping("/delete")
-    public BaseResponse<Boolean> deleteInterfaceInfo(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> deleteInterfaceInfo(@RequestBody DeleteRequest deleteRequest,
+                                                     HttpServletRequest request) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -194,6 +196,57 @@ public class IntefaceInfoController {
         return ResultUtils.success(interfaceInfoPage);
     }
 
-    // endregion
+    /**
+     * 上线接口
+     * 管理员才可执行该操作
+     * @param idRequest 接口id
+     * @param request
+     * @return
+     */
+    @PostMapping("/online")
+    @AuthCheck(mustRole = "admin")
+    public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody IdRequest idRequest, HttpServletRequest request) {
+        // 判断id是否合法
+        if (idRequest == null || idRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
 
+        // 测试接口是否可以被调用
+        com.lgp.myapiclientsdk.model.User user = new com.lgp.myapiclientsdk.model.User();
+        user.setUsername("test");
+        String usernameByPost = apiClient.getUsernameByPost(user);
+        if (StringUtils.isBlank(usernameByPost)) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "接口验证失败");
+        }
+
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(idRequest.getId());
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());
+        boolean result = interfaceInfoService.updateById(interfaceInfo);
+
+        return ResultUtils.success(result);
+    }
+
+    /**
+     * 下线接口
+     * 管理员才可执行该操作
+     * @param idRequest 接口id
+     * @param request
+     * @return
+     */
+    @PostMapping("/offline")
+    @AuthCheck(mustRole = "admin")
+    public BaseResponse<Boolean> offlineInterfaceInfo(@RequestBody IdRequest idRequest, HttpServletRequest request) {
+        // 判断id是否合法
+        if (idRequest == null || idRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(idRequest.getId());
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
+        boolean result = interfaceInfoService.updateById(interfaceInfo);
+
+        return ResultUtils.success(result);
+    }
 }
