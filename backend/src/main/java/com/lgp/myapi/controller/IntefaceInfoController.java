@@ -2,6 +2,8 @@ package com.lgp.myapi.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.gson.Gson;
+import com.lgp.myapi.model.dto.interfaceinfo.InterfaceInfoInvokeRequest;
 import com.lgp.myapi.model.enums.InterfaceInfoStatusEnum;
 import com.lgp.myapiclientsdk.client.ApiClient;
 import com.lgp.myapi.annotation.AuthCheck;
@@ -248,5 +250,42 @@ public class IntefaceInfoController {
         boolean result = interfaceInfoService.updateById(interfaceInfo);
 
         return ResultUtils.success(result);
+    }
+
+    /**
+     * 调用接口
+     * @param invokeRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/invoke")
+    public BaseResponse<String> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest invokeRequest,
+                                                     HttpServletRequest request) {
+        // 判断id是否合法
+        if (invokeRequest == null || invokeRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        long id = invokeRequest.getId();
+        String userRequestPrams = invokeRequest.getUserRequestParams();
+
+        InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
+        if (interfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        if (interfaceInfo.getStatus() != InterfaceInfoStatusEnum.ONLINE.getValue()) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口已关闭");
+        }
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        // 单独创建一个ApiClient，而非配置Spring管理的ApiClient
+        ApiClient tempClient = new ApiClient(accessKey, secretKey);
+        // todo: 后期优化调用
+        // 此处暂时用该接口调用来代替接口的调用
+        Gson gson = new Gson();
+        com.lgp.myapiclientsdk.model.User user = gson.fromJson(userRequestPrams, com.lgp.myapiclientsdk.model.User.class);
+        String usernameByPost = tempClient.getUsernameByPost(user);
+
+        return ResultUtils.success(usernameByPost);
     }
 }
