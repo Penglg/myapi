@@ -34,7 +34,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/interfaceInfo")
 @Slf4j
-public class IntefaceInfoController {
+public class InterfaceInfoController {
 
     @Resource
     private InterfaceInfoService interfaceInfoService;
