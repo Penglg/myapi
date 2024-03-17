@@ -1,5 +1,6 @@
 package com.lgp.myapi.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lgp.myapi.common.ErrorCode;
 import com.lgp.myapi.exception.BusinessException;
@@ -42,6 +43,22 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "调用次数不能小于0");
 
         }
+    }
+
+    @Override
+    public boolean invokeCount(long interfaceInfoId, long userId) {
+        // 校验
+        if (interfaceInfoId <= 0 || userId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        LambdaUpdateWrapper<UserInterfaceInfo> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(UserInterfaceInfo::getInterfaceInfoId, interfaceInfoId)
+                .eq(UserInterfaceInfo::getUserId, userId)
+                // TODO: 2024/3/4 考虑并发，加锁 
+                // 大于0
+//                .gt(UserInterfaceInfo::getLeftNum, 0)
+                .setSql("leftNum = leftNum - 1, totalNum = totalNum + 1");
+        return this.update(updateWrapper);
     }
 }
 
