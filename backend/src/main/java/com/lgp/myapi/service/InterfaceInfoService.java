@@ -1,7 +1,7 @@
 package com.lgp.myapi.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lgp.myapi.model.entity.InterfaceInfo;
+import com.lgp.myapicommon.model.entity.InterfaceInfo;
 
 /**
 * @author 86158

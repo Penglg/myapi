@@ -1,6 +1,6 @@
 package com.lgp.myapi.service;
 
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

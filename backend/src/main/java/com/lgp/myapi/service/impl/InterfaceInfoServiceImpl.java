@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lgp.myapi.common.ErrorCode;
 import com.lgp.myapi.exception.BusinessException;
 import com.lgp.myapi.service.InterfaceInfoService;
-import com.lgp.myapi.model.entity.InterfaceInfo;
+import com.lgp.myapicommon.model.entity.InterfaceInfo;
 import com.lgp.myapi.mapper.InterfaceInfoMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,8 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         if (interfaceInfo == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        // 请求方法全为大写
+        interfaceInfo.setMethod(interfaceInfo.getMethod().toUpperCase());
         String name = interfaceInfo.getName();
         String method = interfaceInfo.getMethod();
         String url = interfaceInfo.getUrl();

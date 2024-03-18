@@ -5,7 +5,7 @@ import cn.hutool.crypto.digest.DigestUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lgp.myapi.common.ErrorCode;
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.User;
 import com.lgp.myapi.exception.BusinessException;
 import com.lgp.myapi.mapper.UserMapper;
 import com.lgp.myapi.service.UserService;

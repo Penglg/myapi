@@ -10,8 +10,8 @@ import com.lgp.myapi.exception.BusinessException;
 import com.lgp.myapi.model.dto.userinterfaceinfo.UserInterfaceInfoAddRequest;
 import com.lgp.myapi.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
 import com.lgp.myapi.model.dto.userinterfaceinfo.UserInterfaceInfoUpdateRequest;
-import com.lgp.myapi.model.entity.UserInterfaceInfo;
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.UserInterfaceInfo;
+import com.lgp.myapicommon.model.entity.User;
 import com.lgp.myapi.service.UserInterfaceInfoService;
 import com.lgp.myapi.service.UserService;
 import com.lgp.myapiclientsdk.client.ApiClient;
@@ -39,9 +39,6 @@ public class UserInterfaceInfoController {
 
     @Resource
     private UserService userService;
-
-    @Resource
-    private ApiClient apiClient;
 
     /**
      * 创建

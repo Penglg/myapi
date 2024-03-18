@@ -11,7 +11,7 @@ import com.lgp.myapi.model.dto.post.PostAddRequest;
 import com.lgp.myapi.model.dto.post.PostQueryRequest;
 import com.lgp.myapi.model.dto.post.PostUpdateRequest;
 import com.lgp.myapi.model.entity.Post;
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.User;
 import com.lgp.myapi.service.PostService;
 import com.lgp.myapi.service.UserService;
 import com.lgp.myapi.annotation.AuthCheck;

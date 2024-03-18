@@ -1,6 +1,6 @@
 package com.lgp.myapi.service;
 
-import com.lgp.myapi.model.entity.UserInterfaceInfo;
+import com.lgp.myapicommon.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +13,6 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
     void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add);
 
     boolean invokeCount(long interfaceInfoId, long userId);
+
+    boolean leftNumToInvoke(long interfaceInfoId, long userId);
 }

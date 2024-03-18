@@ -8,7 +8,7 @@ import com.lgp.myapi.common.DeleteRequest;
 import com.lgp.myapi.common.ErrorCode;
 import com.lgp.myapi.common.ResultUtils;
 import com.lgp.myapi.model.dto.user.*;
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.User;
 import com.lgp.myapi.service.UserService;
 import com.lgp.myapi.exception.BusinessException;
 import com.lgp.myapi.model.vo.UserVO;
