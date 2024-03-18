@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * 接口信息
+ *
  * @TableName interface_info
  */
 @TableName(value ="interface_info")
