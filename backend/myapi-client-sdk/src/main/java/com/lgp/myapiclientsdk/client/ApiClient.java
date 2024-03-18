@@ -62,7 +62,7 @@ public class ApiClient {
 
     public String getUsernameByPost(User user) {
         String json = JSONUtil.toJsonStr(user);
-        HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST + "/api/name/user/")
+        HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST + "/api/name/user")
                 .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
