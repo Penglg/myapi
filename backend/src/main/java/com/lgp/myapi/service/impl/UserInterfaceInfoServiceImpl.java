@@ -11,6 +11,7 @@ import com.lgp.myapi.mapper.UserInterfaceInfoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 86158
@@ -82,6 +83,11 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
         }
 
         return userInterfaceInfo.getLeftNum() > 0;
+    }
+
+    @Override
+    public List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int limit) {
+        return userInterfaceInfoMapper.listTopInvokeInterfaceInfo(limit);
     }
 }
 

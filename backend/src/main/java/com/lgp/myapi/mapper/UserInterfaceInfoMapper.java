@@ -3,6 +3,8 @@ package com.lgp.myapi.mapper;
 import com.lgp.myapicommon.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author 86158
 * @description 针对表【user_interface_info(用户调用接口关系)】的数据库操作Mapper
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserInterfaceInfoMapper extends BaseMapper<UserInterfaceInfo> {
 
+    List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int limit);
 }
 
 

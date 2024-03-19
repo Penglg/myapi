@@ -3,6 +3,8 @@ package com.lgp.myapi.service;
 import com.lgp.myapicommon.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author 86158
 * @description 针对表【user_interface_info(用户调用接口关系)】的数据库操作Service
@@ -15,4 +17,6 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
     boolean invokeCount(long interfaceInfoId, long userId);
 
     boolean leftNumToInvoke(long interfaceInfoId, long userId);
+
+    List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int limit);
 }
