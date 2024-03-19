@@ -1,2 +1,2 @@
-# openApi
-开放API接口平台
+# MyAPI
+一个开放API接口平台
