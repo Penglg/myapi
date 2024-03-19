@@ -2,7 +2,7 @@ package com.lgp.myapi.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 

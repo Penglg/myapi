@@ -2,7 +2,6 @@ package com.lgp.myapi.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lgp.myapi.model.entity.Post;
-import com.lgp.myapi.model.entity.InterfaceInfo;
 
 /**
 * @author lgpli

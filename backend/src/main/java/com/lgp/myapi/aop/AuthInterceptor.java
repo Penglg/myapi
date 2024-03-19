@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.lgp.myapi.annotation.AuthCheck;
 import com.lgp.myapi.common.ErrorCode;
 import com.lgp.myapi.exception.BusinessException;
-import com.lgp.myapi.model.entity.User;
+import com.lgp.myapicommon.model.entity.User;
 import com.lgp.myapi.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

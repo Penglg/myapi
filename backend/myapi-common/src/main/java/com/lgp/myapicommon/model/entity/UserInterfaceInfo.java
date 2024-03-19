@@ -1,4 +1,4 @@
-package com.lgp.myapi.model.entity;
+package com.lgp.myapicommon.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
@@ -7,12 +7,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 接口信息
- * @TableName interface_info
+ * 用户调用接口关系
+ *
+ * @TableName user_interface_info
  */
-@TableName(value ="interface_info")
+@TableName(value ="user_interface_info")
 @Data
-public class InterfaceInfo implements Serializable {
+public class UserInterfaceInfo implements Serializable {
     /**
      * 主键
      */
@@ -20,44 +21,29 @@ public class InterfaceInfo implements Serializable {
     private Long id;
 
     /**
-     * 名称
-     */
-    private String name;
-
-    /**
-     * 描述
-     */
-    private String description;
-
-    /**
-     * 接口地址
-     */
-    private String url;
-
-    /**
-     * 请求头
-     */
-    private String requestHeader;
-
-    /**
-     * 响应头
-     */
-    private String responseHeader;
-
-    /**
-     * 接口状态（0-关闭，1-开启）
-     */
-    private Integer status;
-
-    /**
-     * 请求类型
-     */
-    private String method;
-
-    /**
-     * 创建人
+     * 调用者
      */
     private Long userId;
+
+    /**
+     * 被调用接口
+     */
+    private Long interfaceInfoId;
+
+    /**
+     * 总调用次数
+     */
+    private Integer totalNum;
+
+    /**
+     * 剩余调用次数
+     */
+    private Integer leftNum;
+
+    /**
+     * 接口调用状态，0-正常，1-禁用
+     */
+    private Integer status;
 
     /**
      * 创建时间

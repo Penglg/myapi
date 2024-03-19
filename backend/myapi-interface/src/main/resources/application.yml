@@ -1,0 +1,9 @@
+server:
+  port: 8123
+  servlet:
+    # 统一前缀路径
+    context-path: /api
+myapi:
+  client:
+    access-key: lgpak
+    secret-key: lgpsk

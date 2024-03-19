@@ -6,6 +6,7 @@
 /backend/.mvn
 /backend/!**/src/main/**/target/
 /backend/!**/src/test/**/target/
+/backend/myapi-common/target
 
 ### STS ###
 /backend/.apt_generated
