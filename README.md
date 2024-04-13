@@ -1,4 +1,4 @@
-![图片](https://github.com/Penglg/myapi/assets/109449337/d4edfd74-e357-43d1-97e5-3d83402da9f7)![图片](https://github.com/Penglg/myapi/assets/109449337/cfce6c94-c275-4c93-ad72-bebdef71516c)# MyAPI - API接口开放平台
+# MyAPI - API接口开放平台
 
 ## 项目介绍
 
