@@ -22,15 +22,15 @@
 
 ### 前端安装
 1. 下载myapi-frontend，即该项目对应的前端项目：https://github.com/Penglg/myapi-frontend
-   ```git clone https://github.com/Penglg/myapi-frontend.git
+   ```git clone https://github.com/Penglg/myapi-frontend.git```
 2. 安装npm
    本人npm版本是10.2.3
 3. 启动项目
-   ```npm run start:dev
+   ```npm run start:dev```
 
 ### 后端安装
 1. 下载项目
-   ```git clone https://github.com/Penglg/myapi.git
+   ```git clone https://github.com/Penglg/myapi.git```
 2. 项目打包
    打开api-common项目，执行maven的install命令将其打包到本地
    打开api-client-sdk项目，执行maven的install命令将其打包到本地
@@ -39,7 +39,7 @@
 4. 启动Nacos
    安装Nacos，本人是2.1.2版本
    单机启动岂可
-   ```startup.cmd -m standalone
+   ```startup.cmd -m standalone```
    并在backend项目的yml文件中配置为自己的Nacos
 5. 启动backend项目、myapi-gateway项目及myapi-interface项目
 
